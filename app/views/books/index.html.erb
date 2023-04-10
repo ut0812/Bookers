@@ -1,3 +1,9 @@
+<% if flash[:notice1] %>
+     <p id="notice">
+       <%= flash[:notice1] %>
+     </p>
+   <% end %>
+
 <h1>Books</h1>
 
 <h2>title</h2>
@@ -9,7 +15,7 @@
   <p><%= book.title%></p>
 
   <p>body</p>
-  <p><%= book.title%></p>
+  <p><%= book.body%></p>
 
   <span>
    <%= link_to "show", book_path(book.id) %>
@@ -20,7 +26,7 @@
   </span>
 
   <span>
-   <%= link_to "destroy", destroy_book_path(book.id), method: :delete %>
+   <%= link_to "destroy", destroy_book_path(book.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
   </span>
 
 <% end %>
@@ -28,6 +34,15 @@
 <h2>New book</h2>
 
 <%= form_with model: @book, url:'/books', method: :post do |f| %>
+
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 
  <h2>title</h2>
   <%= f.text_field :title %>
