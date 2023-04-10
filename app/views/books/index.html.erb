@@ -1,0 +1,40 @@
+<h1>Books</h1>
+
+<h2>title</h2>
+
+<% @books.each do |book| %>
+
+  <p>title</p>
+
+  <p><%= book.title%></p>
+
+  <p>body</p>
+  <p><%= book.title%></p>
+
+  <span>
+   <%= link_to "show", book_path(book.id) %>
+  </span>
+
+  <span>
+   <%= link_to "Edit", edit_book_path(book.id) %>
+  </span>
+
+  <span>
+   <%= link_to "destroy", destroy_book_path(book.id), method: :delete %>
+  </span>
+
+<% end %>
+
+<h2>New book</h2>
+
+<%= form_with model: @book, url:'/books', method: :post do |f| %>
+
+ <h2>title</h2>
+  <%= f.text_field :title %>
+
+  <h4>本文</h4>
+  <%= f.text_area :body %>
+
+  <%= f.submit 'Create Book' %>
+
+<% end %>
