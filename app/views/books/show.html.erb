@@ -1,5 +1,17 @@
 <div class="top">
 
+    <% if flash[:notice] %>
+        <p id="notice">
+           <%= flash[:notice] %>
+        </p>
+    <% end %>
+
+    <% if flash[:notice2] %>
+        <p id="notice">
+            <%= flash[:notice2] %>
+        </p>
+    <% end %>
+
     <p class="toptext"><strong>Title: </strong><%= @book.title %></p>
     <p class="toptext"><strong>Body: </strong><%= @book.body %></p>
 
